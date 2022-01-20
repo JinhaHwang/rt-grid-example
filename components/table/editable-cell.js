@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { animated, useSpring } from 'react-spring'
 
 const EditableCell = (props) => {
   const {
@@ -19,14 +20,22 @@ const EditableCell = (props) => {
     setValue(initialValue)
   }, [initialValue])
 
+  const styles = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    delay: 200,
+  })
+
   return (
-    <input
-      value={value}
-      onChange={onChange}
-      onBlur={(e) => {
-        updateMyData(row, column, value)
-      }}
-    />
+    <animated.div style={styles}>
+      <input
+        value={value}
+        onChange={onChange}
+        onBlur={(e) => {
+          updateMyData(row, column, value)
+        }}
+      />
+    </animated.div>
   )
 }
 

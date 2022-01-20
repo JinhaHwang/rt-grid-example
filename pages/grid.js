@@ -12,6 +12,8 @@ const Grid = () => {
   const router = useRouter()
   const { name } = router.query
 
+  const [skipPageReset, setSkipPageReset] = useState(false)
+
   const columns = useMemo(
     () => [
       { Header: '번호', accessor: 'id' },
@@ -86,7 +88,6 @@ const Grid = () => {
       }
     }
   `)
-  const [skipPageReset, setSkipPageReset] = useState(false)
 
   const updateMyData = async (row, column, value) => {
     // We also turn on the flag to not reset the page
@@ -99,18 +100,6 @@ const Grid = () => {
         },
       })
     }
-
-    // setData((old) =>
-    //   old.map((row, index) => {
-    //     if (index === rowIndex) {
-    //       return {
-    //         ...old[rowIndex],
-    //         [columnId]: value,
-    //       }
-    //     }
-    //     return row
-    //   }),
-    // )
   }
 
   // After data chagnes, we turn the flag back off
