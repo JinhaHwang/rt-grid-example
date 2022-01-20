@@ -88,10 +88,10 @@ const Grid = () => {
   `)
   const [skipPageReset, setSkipPageReset] = useState(false)
 
-  const updateMyData = (row, column, value) => {
+  const updateMyData = async (row, column, value) => {
     // We also turn on the flag to not reset the page
     setSkipPageReset(true)
-    updateDeviceMutation({
+    await updateDeviceMutation({
       variables: {
         ...row.values,
         [column.id]: value,
