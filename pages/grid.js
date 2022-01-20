@@ -86,16 +86,15 @@ const Grid = () => {
       }
     }
   `)
-  console.log(data)
   const [skipPageReset, setSkipPageReset] = useState(false)
 
-  const updateMyData = (rowIndex, columnId, value) => {
+  const updateMyData = (row, column, value) => {
     // We also turn on the flag to not reset the page
     setSkipPageReset(true)
     updateDeviceMutation({
       variables: {
-        id: rowIndex,
-        [columnId]: value,
+        ...row.values,
+        [column.id]: value,
       },
     })
 

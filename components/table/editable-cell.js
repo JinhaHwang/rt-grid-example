@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
 const EditableCell = (props) => {
-  console.log(props)
   const {
     value: initialValue = '',
     column,
@@ -25,7 +24,7 @@ const EditableCell = (props) => {
       value={value}
       onChange={onChange}
       onBlur={(e) => {
-        updateMyData(row.values.id, column.id, value)
+        updateMyData(row, column, value)
       }}
     />
   )
