@@ -4,11 +4,11 @@
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
-        "url": "https://fair-moose-57.hasura.app/v1/graphql",
+        "url": "${env:API_URL}",
         "headers": {
           "user-agent": "JS GraphQL",
-          "x-hasura-admin-secret": "HdIeZjCIlC0pk3922igdvftTNP0LEhjMJTEwNnUIAL0iW7DN4imesUv0yDfnaFsa",
-          "x-hasura-access-key": "test"
+          "x-hasura-admin-secret": "${env:HASURA_ADMIN_SECRET}",
+          "x-hasura-access-key": "${env:HASURA_ACCESS_KEY}"
         },
         "introspect": true
       }
