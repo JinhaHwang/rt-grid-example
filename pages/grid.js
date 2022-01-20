@@ -91,12 +91,14 @@ const Grid = () => {
   const updateMyData = async (row, column, value) => {
     // We also turn on the flag to not reset the page
     setSkipPageReset(true)
-    await updateDeviceMutation({
-      variables: {
-        ...row.values,
-        [column.id]: value,
-      },
-    })
+    if (row.original[column.id] !== value) {
+      await updateDeviceMutation({
+        variables: {
+          ...row.values,
+          [column.id]: value,
+        },
+      })
+    }
 
     // setData((old) =>
     //   old.map((row, index) => {
