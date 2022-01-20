@@ -3,8 +3,9 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import styles from '../styles/Home.module.css'
+import { withApollo } from '../lib/withApollo'
 
-export default function Home() {
+function Home() {
   const router = useRouter()
   const {
     register,
@@ -56,3 +57,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default withApollo()(Home)
