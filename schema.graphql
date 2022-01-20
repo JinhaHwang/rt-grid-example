@@ -1,0 +1,727 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: query_root
+    mutation: mutation_root
+    subscription: subscription_root
+}
+
+"whether this query should be cached (Hasura Cloud only)"
+directive @cached(
+    "refresh the cache entry"
+    refresh: Boolean! = false,
+    "measured in seconds"
+    ttl: Int! = 60
+) on QUERY
+
+"""
+
+디바이스목록
+
+
+columns and relationships of "devices"
+"""
+type devices {
+    dns1: String
+    dns2: String
+    gateway: String
+    http: Int
+    https: Int
+    id: Int!
+    ip_v4: String
+    mac_address: String
+    model_name: String
+    rtsp: Int
+    serial_number: String
+    subnet_mask: String
+}
+
+"aggregated selection of \"devices\""
+type devices_aggregate {
+    aggregate: devices_aggregate_fields
+    nodes: [devices!]!
+}
+
+"aggregate fields of \"devices\""
+type devices_aggregate_fields {
+    avg: devices_avg_fields
+    count(columns: [devices_select_column!], distinct: Boolean): Int!
+    max: devices_max_fields
+    min: devices_min_fields
+    stddev: devices_stddev_fields
+    stddev_pop: devices_stddev_pop_fields
+    stddev_samp: devices_stddev_samp_fields
+    sum: devices_sum_fields
+    var_pop: devices_var_pop_fields
+    var_samp: devices_var_samp_fields
+    variance: devices_variance_fields
+}
+
+"aggregate avg on columns"
+type devices_avg_fields {
+    http: Float
+    https: Float
+    id: Float
+    rtsp: Float
+}
+
+"aggregate max on columns"
+type devices_max_fields {
+    dns1: String
+    dns2: String
+    gateway: String
+    http: Int
+    https: Int
+    id: Int
+    ip_v4: String
+    mac_address: String
+    model_name: String
+    rtsp: Int
+    serial_number: String
+    subnet_mask: String
+}
+
+"aggregate min on columns"
+type devices_min_fields {
+    dns1: String
+    dns2: String
+    gateway: String
+    http: Int
+    https: Int
+    id: Int
+    ip_v4: String
+    mac_address: String
+    model_name: String
+    rtsp: Int
+    serial_number: String
+    subnet_mask: String
+}
+
+"response of any mutation on the table \"devices\""
+type devices_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [devices!]!
+}
+
+"aggregate stddev on columns"
+type devices_stddev_fields {
+    http: Float
+    https: Float
+    id: Float
+    rtsp: Float
+}
+
+"aggregate stddev_pop on columns"
+type devices_stddev_pop_fields {
+    http: Float
+    https: Float
+    id: Float
+    rtsp: Float
+}
+
+"aggregate stddev_samp on columns"
+type devices_stddev_samp_fields {
+    http: Float
+    https: Float
+    id: Float
+    rtsp: Float
+}
+
+"aggregate sum on columns"
+type devices_sum_fields {
+    http: Int
+    https: Int
+    id: Int
+    rtsp: Int
+}
+
+"aggregate var_pop on columns"
+type devices_var_pop_fields {
+    http: Float
+    https: Float
+    id: Float
+    rtsp: Float
+}
+
+"aggregate var_samp on columns"
+type devices_var_samp_fields {
+    http: Float
+    https: Float
+    id: Float
+    rtsp: Float
+}
+
+"aggregate variance on columns"
+type devices_variance_fields {
+    http: Float
+    https: Float
+    id: Float
+    rtsp: Float
+}
+
+"mutation root"
+type mutation_root {
+    "delete data from the table: \"devices\""
+    delete_devices(
+        "filter the rows which have to be deleted"
+        where: devices_bool_exp!
+    ): devices_mutation_response
+    "delete single row from the table: \"devices\""
+    delete_devices_by_pk(id: Int!): devices
+    "delete data from the table: \"users\""
+    delete_users(
+        "filter the rows which have to be deleted"
+        where: users_bool_exp!
+    ): users_mutation_response
+    "delete single row from the table: \"users\""
+    delete_users_by_pk(id: uuid!): users
+    "insert data into the table: \"devices\""
+    insert_devices(
+        "the rows to be inserted"
+        objects: [devices_insert_input!]!,
+        "on conflict condition"
+        on_conflict: devices_on_conflict
+    ): devices_mutation_response
+    "insert a single row into the table: \"devices\""
+    insert_devices_one(
+        "the row to be inserted"
+        object: devices_insert_input!,
+        "on conflict condition"
+        on_conflict: devices_on_conflict
+    ): devices
+    "insert data into the table: \"users\""
+    insert_users(
+        "the rows to be inserted"
+        objects: [users_insert_input!]!,
+        "on conflict condition"
+        on_conflict: users_on_conflict
+    ): users_mutation_response
+    "insert a single row into the table: \"users\""
+    insert_users_one(
+        "the row to be inserted"
+        object: users_insert_input!,
+        "on conflict condition"
+        on_conflict: users_on_conflict
+    ): users
+    "update data of the table: \"devices\""
+    update_devices(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: devices_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: devices_set_input,
+        "filter the rows which have to be updated"
+        where: devices_bool_exp!
+    ): devices_mutation_response
+    "update single row of the table: \"devices\""
+    update_devices_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: devices_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: devices_set_input,
+        pk_columns: devices_pk_columns_input!
+    ): devices
+    "update data of the table: \"users\""
+    update_users(
+        "sets the columns of the filtered rows to the given values"
+        _set: users_set_input,
+        "filter the rows which have to be updated"
+        where: users_bool_exp!
+    ): users_mutation_response
+    "update single row of the table: \"users\""
+    update_users_by_pk(
+        "sets the columns of the filtered rows to the given values"
+        _set: users_set_input,
+        pk_columns: users_pk_columns_input!
+    ): users
+}
+
+type query_root {
+    "fetch data from the table: \"devices\""
+    devices(
+        "distinct select on columns"
+        distinct_on: [devices_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [devices_order_by!],
+        "filter the rows returned"
+        where: devices_bool_exp
+    ): [devices!]!
+    "fetch aggregated fields from the table: \"devices\""
+    devices_aggregate(
+        "distinct select on columns"
+        distinct_on: [devices_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [devices_order_by!],
+        "filter the rows returned"
+        where: devices_bool_exp
+    ): devices_aggregate!
+    "fetch data from the table: \"devices\" using primary key columns"
+    devices_by_pk(id: Int!): devices
+    "fetch data from the table: \"users\""
+    users(
+        "distinct select on columns"
+        distinct_on: [users_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [users_order_by!],
+        "filter the rows returned"
+        where: users_bool_exp
+    ): [users!]!
+    "fetch aggregated fields from the table: \"users\""
+    users_aggregate(
+        "distinct select on columns"
+        distinct_on: [users_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [users_order_by!],
+        "filter the rows returned"
+        where: users_bool_exp
+    ): users_aggregate!
+    "fetch data from the table: \"users\" using primary key columns"
+    users_by_pk(id: uuid!): users
+}
+
+type subscription_root {
+    "fetch data from the table: \"devices\""
+    devices(
+        "distinct select on columns"
+        distinct_on: [devices_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [devices_order_by!],
+        "filter the rows returned"
+        where: devices_bool_exp
+    ): [devices!]!
+    "fetch aggregated fields from the table: \"devices\""
+    devices_aggregate(
+        "distinct select on columns"
+        distinct_on: [devices_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [devices_order_by!],
+        "filter the rows returned"
+        where: devices_bool_exp
+    ): devices_aggregate!
+    "fetch data from the table: \"devices\" using primary key columns"
+    devices_by_pk(id: Int!): devices
+    "fetch data from the table: \"users\""
+    users(
+        "distinct select on columns"
+        distinct_on: [users_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [users_order_by!],
+        "filter the rows returned"
+        where: users_bool_exp
+    ): [users!]!
+    "fetch aggregated fields from the table: \"users\""
+    users_aggregate(
+        "distinct select on columns"
+        distinct_on: [users_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [users_order_by!],
+        "filter the rows returned"
+        where: users_bool_exp
+    ): users_aggregate!
+    "fetch data from the table: \"users\" using primary key columns"
+    users_by_pk(id: uuid!): users
+}
+
+"""
+
+사용자
+
+
+columns and relationships of "users"
+"""
+type users {
+    created_at: timestamptz!
+    id: uuid!
+    last_seen: timestamptz
+    name: String!
+}
+
+"aggregated selection of \"users\""
+type users_aggregate {
+    aggregate: users_aggregate_fields
+    nodes: [users!]!
+}
+
+"aggregate fields of \"users\""
+type users_aggregate_fields {
+    count(columns: [users_select_column!], distinct: Boolean): Int!
+    max: users_max_fields
+    min: users_min_fields
+}
+
+"aggregate max on columns"
+type users_max_fields {
+    created_at: timestamptz
+    id: uuid
+    last_seen: timestamptz
+    name: String
+}
+
+"aggregate min on columns"
+type users_min_fields {
+    created_at: timestamptz
+    id: uuid
+    last_seen: timestamptz
+    name: String
+}
+
+"response of any mutation on the table \"users\""
+type users_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [users!]!
+}
+
+"unique or primary key constraints on table \"devices\""
+enum devices_constraint {
+    "unique or primary key constraint"
+    devices_pkey
+}
+
+"select columns of table \"devices\""
+enum devices_select_column {
+    "column name"
+    dns1
+    "column name"
+    dns2
+    "column name"
+    gateway
+    "column name"
+    http
+    "column name"
+    https
+    "column name"
+    id
+    "column name"
+    ip_v4
+    "column name"
+    mac_address
+    "column name"
+    model_name
+    "column name"
+    rtsp
+    "column name"
+    serial_number
+    "column name"
+    subnet_mask
+}
+
+"update columns of table \"devices\""
+enum devices_update_column {
+    "column name"
+    dns1
+    "column name"
+    dns2
+    "column name"
+    gateway
+    "column name"
+    http
+    "column name"
+    https
+    "column name"
+    id
+    "column name"
+    ip_v4
+    "column name"
+    mac_address
+    "column name"
+    model_name
+    "column name"
+    rtsp
+    "column name"
+    serial_number
+    "column name"
+    subnet_mask
+}
+
+"column ordering options"
+enum order_by {
+    "in ascending order, nulls last"
+    asc
+    "in ascending order, nulls first"
+    asc_nulls_first
+    "in ascending order, nulls last"
+    asc_nulls_last
+    "in descending order, nulls first"
+    desc
+    "in descending order, nulls first"
+    desc_nulls_first
+    "in descending order, nulls last"
+    desc_nulls_last
+}
+
+"unique or primary key constraints on table \"users\""
+enum users_constraint {
+    "unique or primary key constraint"
+    users_name_key
+    "unique or primary key constraint"
+    users_pkey
+}
+
+"select columns of table \"users\""
+enum users_select_column {
+    "column name"
+    created_at
+    "column name"
+    id
+    "column name"
+    last_seen
+    "column name"
+    name
+}
+
+"update columns of table \"users\""
+enum users_update_column {
+    "column name"
+    created_at
+    "column name"
+    id
+    "column name"
+    last_seen
+    "column name"
+    name
+}
+
+scalar timestamptz
+
+scalar uuid
+
+"Boolean expression to compare columns of type \"Int\". All fields are combined with logical 'AND'."
+input Int_comparison_exp {
+    _eq: Int
+    _gt: Int
+    _gte: Int
+    _in: [Int!]
+    _is_null: Boolean
+    _lt: Int
+    _lte: Int
+    _neq: Int
+    _nin: [Int!]
+}
+
+"Boolean expression to compare columns of type \"String\". All fields are combined with logical 'AND'."
+input String_comparison_exp {
+    _eq: String
+    _gt: String
+    _gte: String
+    "does the column match the given case-insensitive pattern"
+    _ilike: String
+    _in: [String!]
+    "does the column match the given POSIX regular expression, case insensitive"
+    _iregex: String
+    _is_null: Boolean
+    "does the column match the given pattern"
+    _like: String
+    _lt: String
+    _lte: String
+    _neq: String
+    "does the column NOT match the given case-insensitive pattern"
+    _nilike: String
+    _nin: [String!]
+    "does the column NOT match the given POSIX regular expression, case insensitive"
+    _niregex: String
+    "does the column NOT match the given pattern"
+    _nlike: String
+    "does the column NOT match the given POSIX regular expression, case sensitive"
+    _nregex: String
+    "does the column NOT match the given SQL regular expression"
+    _nsimilar: String
+    "does the column match the given POSIX regular expression, case sensitive"
+    _regex: String
+    "does the column match the given SQL regular expression"
+    _similar: String
+}
+
+"Boolean expression to filter rows from the table \"devices\". All fields are combined with a logical 'AND'."
+input devices_bool_exp {
+    _and: [devices_bool_exp!]
+    _not: devices_bool_exp
+    _or: [devices_bool_exp!]
+    dns1: String_comparison_exp
+    dns2: String_comparison_exp
+    gateway: String_comparison_exp
+    http: Int_comparison_exp
+    https: Int_comparison_exp
+    id: Int_comparison_exp
+    ip_v4: String_comparison_exp
+    mac_address: String_comparison_exp
+    model_name: String_comparison_exp
+    rtsp: Int_comparison_exp
+    serial_number: String_comparison_exp
+    subnet_mask: String_comparison_exp
+}
+
+"input type for incrementing numeric columns in table \"devices\""
+input devices_inc_input {
+    http: Int
+    https: Int
+    id: Int
+    rtsp: Int
+}
+
+"input type for inserting data into table \"devices\""
+input devices_insert_input {
+    dns1: String
+    dns2: String
+    gateway: String
+    http: Int
+    https: Int
+    id: Int
+    ip_v4: String
+    mac_address: String
+    model_name: String
+    rtsp: Int
+    serial_number: String
+    subnet_mask: String
+}
+
+"on conflict condition type for table \"devices\""
+input devices_on_conflict {
+    constraint: devices_constraint!
+    update_columns: [devices_update_column!]! = []
+    where: devices_bool_exp
+}
+
+"Ordering options when selecting data from \"devices\"."
+input devices_order_by {
+    dns1: order_by
+    dns2: order_by
+    gateway: order_by
+    http: order_by
+    https: order_by
+    id: order_by
+    ip_v4: order_by
+    mac_address: order_by
+    model_name: order_by
+    rtsp: order_by
+    serial_number: order_by
+    subnet_mask: order_by
+}
+
+"primary key columns input for table: devices"
+input devices_pk_columns_input {
+    id: Int!
+}
+
+"input type for updating data in table \"devices\""
+input devices_set_input {
+    dns1: String
+    dns2: String
+    gateway: String
+    http: Int
+    https: Int
+    id: Int
+    ip_v4: String
+    mac_address: String
+    model_name: String
+    rtsp: Int
+    serial_number: String
+    subnet_mask: String
+}
+
+"Boolean expression to compare columns of type \"timestamptz\". All fields are combined with logical 'AND'."
+input timestamptz_comparison_exp {
+    _eq: timestamptz
+    _gt: timestamptz
+    _gte: timestamptz
+    _in: [timestamptz!]
+    _is_null: Boolean
+    _lt: timestamptz
+    _lte: timestamptz
+    _neq: timestamptz
+    _nin: [timestamptz!]
+}
+
+"Boolean expression to filter rows from the table \"users\". All fields are combined with a logical 'AND'."
+input users_bool_exp {
+    _and: [users_bool_exp!]
+    _not: users_bool_exp
+    _or: [users_bool_exp!]
+    created_at: timestamptz_comparison_exp
+    id: uuid_comparison_exp
+    last_seen: timestamptz_comparison_exp
+    name: String_comparison_exp
+}
+
+"input type for inserting data into table \"users\""
+input users_insert_input {
+    created_at: timestamptz
+    id: uuid
+    last_seen: timestamptz
+    name: String
+}
+
+"on conflict condition type for table \"users\""
+input users_on_conflict {
+    constraint: users_constraint!
+    update_columns: [users_update_column!]! = []
+    where: users_bool_exp
+}
+
+"Ordering options when selecting data from \"users\"."
+input users_order_by {
+    created_at: order_by
+    id: order_by
+    last_seen: order_by
+    name: order_by
+}
+
+"primary key columns input for table: users"
+input users_pk_columns_input {
+    id: uuid!
+}
+
+"input type for updating data in table \"users\""
+input users_set_input {
+    created_at: timestamptz
+    id: uuid
+    last_seen: timestamptz
+    name: String
+}
+
+"Boolean expression to compare columns of type \"uuid\". All fields are combined with logical 'AND'."
+input uuid_comparison_exp {
+    _eq: uuid
+    _gt: uuid
+    _gte: uuid
+    _in: [uuid!]
+    _is_null: Boolean
+    _lt: uuid
+    _lte: uuid
+    _neq: uuid
+    _nin: [uuid!]
+}
